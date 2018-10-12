@@ -37,6 +37,8 @@ abstract class RegenerateUrlRewritesAbstract extends Command
     const INPUT_KEY_ONLY_CATEGORIES = 'onlyCategories';
     const INPUT_KEY_SAVE_REWRITES_HISTORY = 'save-old-urls';
     const INPUT_KEY_NO_REINDEX = 'no-reindex';
+    const INPUT_KEY_NO_CACHE_FLUSH = 'no-cache-flush';
+    const INPUT_KEY_NO_CACHE_CLEAN = 'no-cache-clean';
     const INPUT_KEY_PRODUCTS_RANGE = 'products-range';
 
     /**
@@ -135,6 +137,16 @@ abstract class RegenerateUrlRewritesAbstract extends Command
     protected $_runReindex = true;
 
     /**
+     * @var boolean
+     */
+    protected $_runCacheClean = true;
+
+    /**
+     * @var boolean
+     */
+    protected $_runCacheFlush = true;
+
+    /**
      * @var integer
      */
     protected $_step = 0;
@@ -225,6 +237,18 @@ abstract class RegenerateUrlRewritesAbstract extends Command
                     null,
                     InputOption::VALUE_NONE,
                     'Do not run reindex when URL rewrites are generated.'
+                ),
+                new InputOption(
+                    self::INPUT_KEY_NO_CACHE_FLUSH,
+                    null,
+                    InputOption::VALUE_NONE,
+                    'Do not run cache:flush when URL rewrites are generated.'
+                ),
+                new InputOption(
+                    self::INPUT_KEY_NO_CACHE_CLEAN,
+                    null,
+                    InputOption::VALUE_NONE,
+                    'Do not run cache:clean when URL rewrites are generated.'
                 ),
                 new InputOption(
                     self::INPUT_KEY_PRODUCTS_RANGE,
