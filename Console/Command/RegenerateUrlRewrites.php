@@ -137,7 +137,7 @@ class RegenerateUrlRewrites extends RegenerateUrlRewritesLayer
             if ($this->_runCacheClean) {
                 shell_exec('php bin/magento cache:clean');
             }
-            if ($this->runCacheFlush) {
+            if ($this->_runCacheFlush) {
                 shell_exec('php bin/magento cache:flush');
             }
             $this->_output->writeln('If you use some external cache mechanisms (e.g.: Redis, Varnish, etc.) - please, refresh this external cache.');
