@@ -132,7 +132,7 @@ class RegenerateUrlRewrites extends RegenerateUrlRewritesLayer
             $this->_output->writeln('Reindexation...');
             shell_exec('php bin/magento indexer:reindex');
         }
-        if ($this->_runCacheClean || $this->runCacheFlush) {
+        if ($this->_runCacheClean || $this->_runCacheFlush) {
             $this->_output->writeln('Cache refreshing...');
             if ($this->_runCacheClean) {
                 shell_exec('php bin/magento cache:clean');
