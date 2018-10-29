@@ -169,7 +169,9 @@ class RegenerateUrlRewrites extends RegenerateUrlRewritesLayer
                 if ($this->_saveOldUrls) {
                     $category->setData('save_rewrites_history', true);
                 }
-                $category->setData('url_path', null)->setStoreId($storeId)->save();
+                $category->setStoreId($storeId);
+                $category->setUrlPath($this->_categoryUrlPathGenerator->getUrlPath($category));
+                $category->getResource()->saveAttribute($category, 'url_path');
 
                 if (!$this->onlyCategories) {
                     $this->resetCategoryProductsUrlKeyPath($category, $storeId);

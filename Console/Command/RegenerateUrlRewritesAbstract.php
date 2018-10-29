@@ -30,6 +30,7 @@ use Magento\CatalogUrlRewrite\Model\Map\DataCategoryUrlRewriteDatabaseMap;
 use Magento\CatalogUrlRewrite\Model\Map\DataProductUrlRewriteDatabaseMap;
 use Magento\Catalog\Model\ResourceModel\Product\ActionFactory as ProductActionFactory;
 use Magento\Framework\App\State as AppState;
+use Magento\CatalogUrlRewrite\Model\CategoryUrlPathGenerator;
 
 abstract class RegenerateUrlRewritesAbstract extends Command
 {
@@ -128,6 +129,11 @@ abstract class RegenerateUrlRewritesAbstract extends Command
     protected $_appState;
 
     /**
+     * @var Magento\CatalogUrlRewrite\Model\CategoryUrlPathGenerator
+     */
+    protected $_categoryUrlPathGenerator;
+
+    /**
      * @var boolean
      */
     protected $_saveOldUrls = false;
@@ -186,7 +192,8 @@ abstract class RegenerateUrlRewritesAbstract extends Command
         UrlRewriteHandlerFactory\Proxy $urlRewriteHandlerFactory,
         DatabaseMapPool\Proxy $databaseMapPool,
         ProductActionFactory\Proxy $productActionFactory,
-        AppState\Proxy $appState
+        AppState\Proxy $appState,
+        CategoryUrlPathGenerator $categoryUrlPathGenerator
     ) {
         $this->_resource = $resource;
         $this->_categoryCollectionFactory = $categoryCollectionFactory;
@@ -204,6 +211,7 @@ abstract class RegenerateUrlRewritesAbstract extends Command
             DataProductUrlRewriteDatabaseMap::class
         ];
         $this->_appState = $appState;
+        $this->_categoryUrlPathGenerator = $categoryUrlPathGenerator;
         parent::__construct();
     }
 
