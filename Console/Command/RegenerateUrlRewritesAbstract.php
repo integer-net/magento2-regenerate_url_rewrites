@@ -193,7 +193,7 @@ abstract class RegenerateUrlRewritesAbstract extends Command
         DatabaseMapPool\Proxy $databaseMapPool,
         ProductActionFactory\Proxy $productActionFactory,
         AppState\Proxy $appState,
-        CategoryUrlPathGenerator $categoryUrlPathGenerator
+        CategoryUrlPathGenerator\Proxy $categoryUrlPathGenerator
     ) {
         $this->_resource = $resource;
         $this->_categoryCollectionFactory = $categoryCollectionFactory;
